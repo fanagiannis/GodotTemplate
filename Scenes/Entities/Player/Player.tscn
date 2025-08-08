@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwtjx04v8jic1"]
+
+[ext_resource type="Script" uid="uid://scuu8loxfdkm" path="res://Scenes/Entities/Entity.cs" id="1_7kpwk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xay8f"]
+
+[node name="Player" type="Node3D"]
+
+[node name="Follow Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.622022, -0.150523)
+
+[node name="Body" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xay8f")
+script = ExtResource("1_7kpwk")
