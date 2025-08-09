@@ -1,48 +1,34 @@
 using Godot;
 using System;
 
-public partial class Entity : CollisionShape3D
+public partial class Entity : Node3D
 {
-	private Health HP=new Health(100f,100f);
-	private Stamina Stamina=new Stamina(100f,100f);
-}
+	[Export]
+	private float health = 100f;
+	[Export]
+	private float maxHealth = 100f;
+	[Export]
+	private float stamina = 100f;
+	[Export]
+	private float maxStamina = 100f;
+	//, maxHealth, stamina, maxStamina;
+	private Health HP;
+	private Stamina Stamina ;
 
-class Health
-{
-	private float currentHealth, maxHealth;
-	public Health(float currentValue, float maxValue)
+	public override void _Ready()
 	{
-		currentHealth = currentValue;
-		maxHealth = maxValue;
-	}
+		HP = new Health(health, maxHealth);
+		Stamina = new Stamina(stamina,maxStamina);
+	 }
 
-	public float Value()
+	public float HealthPoints()
 	{
-		return Mathf.Max(0,currentHealth);
-	}
-		
-	public float maxValue()
-	{
-		return maxHealth;
-	}
-	}
-
-class Stamina
-{
-	private float currentStamina, maxStamina;
-	public Stamina(float currentValue, float maxValue)
-	{
-		currentStamina = currentValue;
-		maxStamina = maxValue;
+		return HP.Value();
 	}
 
-	public float Value()
+	public float StaminaPoints()
 	{
-		return currentStamina;
+		return Stamina.Value();
 	}
 
-	public float maxValue()
-	{
-		return maxStamina;
-	}
 }
