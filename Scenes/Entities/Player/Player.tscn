@@ -1,14 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwtjx04v8jic1"]
+[gd_scene load_steps=5 format=3 uid="uid://bwtjx04v8jic1"]
 
-[ext_resource type="Script" uid="uid://scuu8loxfdkm" path="res://Scenes/Entities/Entity.cs" id="1_7kpwk"]
+[ext_resource type="Script" uid="uid://scuu8loxfdkm" path="res://Scripts/Entity.cs" id="1_7kpwk"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xay8f"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7kpwk"]
 
-[node name="Player" type="Node3D"]
+[sub_resource type="Skin" id="Skin_qer5h"]
 
-[node name="Follow Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.622022, -0.150523)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmdnf"]
 
-[node name="Body" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_xay8f")
+[node name="Body" type="MeshInstance3D"]
+mesh = SubResource("CapsuleMesh_7kpwk")
+skin = SubResource("Skin_qer5h")
+surface_material_override/0 = SubResource("StandardMaterial3D_pmdnf")
 script = ExtResource("1_7kpwk")
+surface_material_override/0 = SubResource("StandardMaterial3D_pmdnf")
+
+[node name="FollowCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587019, 0)
