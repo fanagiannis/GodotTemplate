@@ -1,19 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwtjx04v8jic1"]
 
-[ext_resource type="Script" uid="uid://scuu8loxfdkm" path="res://Scripts/Entity.cs" id="1_7kpwk"]
+[ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_7kpwk"]
+[ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Movement.cs" id="2_qer5h"]
+[ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/CameraController.cs" id="3_pmdnf"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7kpwk"]
+[sub_resource type="BoxMesh" id="BoxMesh_pmdnf"]
 
-[sub_resource type="Skin" id="Skin_qer5h"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmdnf"]
-
-[node name="Body" type="MeshInstance3D"]
-mesh = SubResource("CapsuleMesh_7kpwk")
-skin = SubResource("Skin_qer5h")
-surface_material_override/0 = SubResource("StandardMaterial3D_pmdnf")
+[node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "camera")]
 script = ExtResource("1_7kpwk")
-surface_material_override/0 = SubResource("StandardMaterial3D_pmdnf")
+movement = NodePath("CharacterBody3D")
+camera = NodePath("CharacterBody3D/FollowCamera")
+Speed = 2.0
+maxSpeed = 3.0
 
-[node name="FollowCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587019, 0)
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity", "camera")]
+script = ExtResource("2_qer5h")
+entity = NodePath("..")
+camera = NodePath("FollowCamera")
+
+[node name="FollowCamera" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021, 0.302, 0)
+script = ExtResource("3_pmdnf")
+
+[node name="Gun" type="MeshInstance3D" parent="CharacterBody3D/FollowCamera"]
+transform = Transform3D(0.128145, 0, 0.153368, 0, 0.0956656, 0, -0.0293374, 0, 0.669909, 0.300316, -0.0128366, -0.251006)
+mesh = SubResource("BoxMesh_pmdnf")
+skeleton = NodePath("")
