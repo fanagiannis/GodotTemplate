@@ -8,8 +8,6 @@ public partial class Movement : CharacterBody3D
     private Node body;
     [Export]
     private MovableEntity entity;
-    [Export]
-    private CameraController camera;
 
     public void Update()
     {
@@ -19,16 +17,6 @@ public partial class Movement : CharacterBody3D
         {
             direction -= aim.Z;
         }
-
-        if (Input.IsKeyPressed(Godot.Key.Q))
-		{
-			RotateY(0.01f);
-		}
-
-        if (Input.IsKeyPressed(Godot.Key.E))
-		{
-			RotateY(-0.01f);
-		}
 
         if (Input.IsKeyPressed(Godot.Key.S))
         {

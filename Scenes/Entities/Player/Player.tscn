@@ -6,21 +6,21 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_pmdnf"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "camera")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("movement")]
 script = ExtResource("1_7kpwk")
 movement = NodePath("CharacterBody3D")
-camera = NodePath("CharacterBody3D/FollowCamera")
 Speed = 2.0
 maxSpeed = 3.0
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity", "camera")]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("2_qer5h")
 entity = NodePath("..")
-camera = NodePath("FollowCamera")
 
-[node name="FollowCamera" type="Camera3D" parent="CharacterBody3D"]
+[node name="FollowCamera" type="Camera3D" parent="CharacterBody3D" node_paths=PackedStringArray("character", "cameraPivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021, 0.302, 0)
 script = ExtResource("3_pmdnf")
+character = NodePath("..")
+cameraPivot = NodePath(".")
 
 [node name="Gun" type="MeshInstance3D" parent="CharacterBody3D/FollowCamera"]
 transform = Transform3D(0.128145, 0, 0.153368, 0, 0.0956656, 0, -0.0293374, 0, 0.669909, 0.300316, -0.0128366, -0.251006)
