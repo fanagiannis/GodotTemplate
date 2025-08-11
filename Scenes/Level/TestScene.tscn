@@ -1,21 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmff5f7mdbkxo"]
+[gd_scene load_steps=5 format=3 uid="uid://cmff5f7mdbkxo"]
 
 [ext_resource type="PackedScene" uid="uid://bwtjx04v8jic1" path="res://Scenes/Entities/Player/Player.tscn" id="1_800fl"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_l3f4p"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_800fl"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_800fl"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(28.8174, 0, 0, 0, 1.1564, 0, 0, 0, 21.6253, 0.383416, -1.45326, 0.358798)
-mesh = SubResource("BoxMesh_l3f4p")
+[sub_resource type="BoxShape3D" id="BoxShape3D_800fl"]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.454646, -0.106487, 2.43486, 4.15565, 0.0285707, 0, -0.547916, 0.128333, 2.02038, -0.146782, 2.38105, -5.05612)
-mesh = SubResource("BoxMesh_l3f4p")
+[node name="Level" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_800fl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186557, 1.32132, 0.257098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186557, -0.276722, 0.257098)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.683796, 0.729673, 0, -0.729673, 0.683796, -0.62407, 5.8783, 7.22687)
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.104042, 0.160765, 0.992757, -0.859753, 1.32849, -0.120137, -0.5, -2.3178, -4.33948e-08, -0.335317, -0.783043, -4.89283)
+physics_material_override = SubResource("PhysicsMaterial_800fl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+mesh = SubResource("BoxMesh_800fl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_800fl")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(18.0696, 0, 0, 0, 1, 0, 0, 0, 24.4292, 0, -1.3711, -0.45013)
+physics_material_override = SubResource("PhysicsMaterial_800fl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_800fl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_800fl")

@@ -8,7 +8,7 @@ public partial class Player : MovableEntity
 
     public override void _Process(double delta)
     {
-        movement.Update();
+        movement.Update(delta);
     }
 
 }
