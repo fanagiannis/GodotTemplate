@@ -9,6 +9,7 @@ public partial class Movement : CharacterBody3D
     [Export]
     private float gravityScale = 9.14f;
     private bool isOnFloor = false;
+    private bool isMoving = false;
 
 
     private void CheckFloorPosition()
@@ -84,8 +85,27 @@ public partial class Movement : CharacterBody3D
         direction = direction.Normalized();
 
         Velocity = direction * entity.GetSpeed();
+        if (Velocity.Length() > 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
         Gravity(delta);
         MoveAndSlide();
+        //GD.Print(isMoving,isOnFloor);
+    }
+
+    public bool GetMovement()
+    {
+        return isMoving;
+    }
+
+    public bool CheckFloor()
+    {
+        return isOnFloor;
     }
 
 }

@@ -3,12 +3,11 @@
 [ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_7kpwk"]
 [ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Movement.cs" id="2_qer5h"]
 [ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/CameraController.cs" id="3_pmdnf"]
+[ext_resource type="PackedScene" uid="uid://mrat0vaakeuq" path="res://Assets/GunPlaceholder/test.fbx" id="4_akw4a"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pmdnf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pmdnf"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_pmdnf"]
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("movement")]
 script = ExtResource("1_7kpwk")
@@ -43,7 +42,23 @@ script = ExtResource("3_pmdnf")
 character = NodePath("..")
 cameraPivot = NodePath(".")
 
-[node name="Gun" type="MeshInstance3D" parent="CharacterBody3D/FollowCamera"]
-transform = Transform3D(0.128145, 0, 0.153368, 0, 0.0956656, 0, -0.0293374, 0, 0.669909, 0.300316, -0.0128366, -0.251006)
-mesh = SubResource("BoxMesh_pmdnf")
-skeleton = NodePath("")
+[node name="Crosshair" type="Label" parent="CharacterBody3D/FollowCamera"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+horizontal_alignment = 1
+
+[node name="GunSlot" type="Node3D" parent="CharacterBody3D/FollowCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190307, 0, -0.22775)
+
+[node name="test" parent="CharacterBody3D/FollowCamera/GunSlot" instance=ExtResource("4_akw4a")]
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, -0.0117852, -0.0181718, 0.0134286)
