@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmff5f7mdbkxo"]
+[gd_scene load_steps=7 format=3 uid="uid://cmff5f7mdbkxo"]
 
 [ext_resource type="PackedScene" uid="uid://bwtjx04v8jic1" path="res://Scenes/Entities/Player/Player.tscn" id="1_800fl"]
 
@@ -6,7 +6,13 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_800fl"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcag"]
+albedo_color = Color(1, 0.15, 0.164166, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_800fl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_800fl"]
+albedo_color = Color(0, 0.211765, 1, 1)
 
 [node name="Level" type="Node3D"]
 
@@ -17,11 +23,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186557, -0.276722, 0.25709
 transform = Transform3D(1, 0, 0, 0, 0.683796, 0.729673, 0, -0.729673, 0.683796, -0.62407, 5.8783, 7.22687)
 
 [node name="Wall" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.104042, 0.160765, 0.992757, -0.859753, 1.32849, -0.120137, -0.5, -2.3178, -4.33948e-08, -0.335317, -0.783043, -4.89283)
+transform = Transform3D(-2.18557e-08, -1.01314e-07, 1, -0.866025, 1.33818, 0, -0.5, -2.3178, -4.37114e-08, -0.335317, -0.783043, -4.89283)
 physics_material_override = SubResource("PhysicsMaterial_800fl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
 mesh = SubResource("BoxMesh_800fl")
+surface_material_override/0 = SubResource("StandardMaterial3D_abcag")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
 shape = SubResource("BoxShape3D_800fl")
@@ -32,6 +39,7 @@ physics_material_override = SubResource("PhysicsMaterial_800fl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_800fl")
+surface_material_override/0 = SubResource("StandardMaterial3D_800fl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_800fl")

@@ -19,15 +19,15 @@ maxSpeed = 3.0
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity")]
 disable_mode = 2
 slide_on_ceiling = false
-wall_min_slide_angle = 1.22173
+wall_min_slide_angle = 0.523599
 floor_stop_on_slope = false
 floor_block_on_wall = false
-floor_max_angle = 1.39626
+floor_max_angle = 0.872665
 platform_floor_layers = 4294967042
 platform_wall_layers = 7
 script = ExtResource("2_qer5h")
 entity = NodePath("..")
-gravityScale = 4.0
+gravityScale = 150.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

@@ -14,7 +14,7 @@ public partial class Movement : CharacterBody3D
     private void CheckFloorPosition()
     {
         Vector3 origin = Position;
-        Vector3 target = Vector3.Down * 1f;
+        Vector3 target = origin + Vector3.Down * 1f;
         var spaceState = GetWorld3D().DirectSpaceState;
 
         var query = new PhysicsRayQueryParameters3D
