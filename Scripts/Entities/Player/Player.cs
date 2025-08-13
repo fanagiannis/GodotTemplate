@@ -11,6 +11,14 @@ public partial class Player : MovableEntity
     private Movement movement;
     [Export]
     private Node3D Camera;
+    [Export]
+    private Inventory inventory;
+
+    public override void _Ready()
+    {
+        base._Ready();
+    }
+
 
     public override void _Input(InputEvent @event)
     {
@@ -35,6 +43,17 @@ public partial class Player : MovableEntity
 
 
     public void Use()
+    {
+        FireWeapon();
+        //GD.Print("bang");
+    }
+
+    public void EquipmentChange()
+    {
+        GD.Print("equipment changed");
+    }
+
+    public void FireWeapon()
     {
         Vector3 origin = Camera.GlobalPosition;
         var direction = -Camera.GlobalTransform.Basis.Z;
@@ -63,12 +82,6 @@ public partial class Player : MovableEntity
         {
             GD.Print("Missed!");
         }
-        //GD.Print("bang");
-    }
-
-    public void EquipmentChange()
-    {
-        GD.Print("equipment changed");
     }
 
 

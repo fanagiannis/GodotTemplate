@@ -4,6 +4,8 @@ using System;
 public partial class Item : Node3D
 {
 	[Export]
+	private PackedScene itemInstance;
+	[Export]
 	private string itemName;
 
 	public override void _Ready()

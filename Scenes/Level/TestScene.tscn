@@ -46,6 +46,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_800fl")
 shape = SubResource("BoxShape3D_800fl")
 
 [node name="EnemyTemplate" parent="." instance=ExtResource("2_abcag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4, -0.230139, -4)
 
 [connection signal="Death" from="EnemyTemplate" to="EnemyTemplate" method="Kill"]

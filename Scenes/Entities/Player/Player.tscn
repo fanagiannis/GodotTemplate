@@ -3,16 +3,17 @@
 [ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_7kpwk"]
 [ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Movement.cs" id="2_qer5h"]
 [ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/CameraController.cs" id="3_pmdnf"]
-[ext_resource type="Script" uid="uid://ct4sppmhyg6ra" path="res://Scenes/Entities/Player/EquipmentSlot.cs" id="4_84utv"]
+[ext_resource type="Script" uid="uid://dv88pdc80nffo" path="res://Scripts/Entities/Player/Inventory.cs" id="4_akw4a"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pmdnf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pmdnf"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "Camera")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "Camera", "inventory")]
 script = ExtResource("1_7kpwk")
 movement = NodePath("CharacterBody3D")
 Camera = NodePath("CharacterBody3D/FollowCamera")
+inventory = NodePath("CharacterBody3D/FollowCamera/Inventory")
 Speed = 2.0
 maxSpeed = 3.0
 
@@ -38,7 +39,7 @@ transform = Transform3D(0.436727, 0, 0, 0, 0.436727, 0, 0, 0, 0.436727, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_pmdnf")
 
 [node name="FollowCamera" type="Camera3D" parent="CharacterBody3D" node_paths=PackedStringArray("character", "cameraPivot")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021, 0.302, -0.207212)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021, 0.302, -0.0835244)
 script = ExtResource("3_pmdnf")
 character = NodePath("..")
 cameraPivot = NodePath(".")
@@ -58,9 +59,9 @@ grow_vertical = 2
 text = "X"
 horizontal_alignment = 1
 
-[node name="EquipmentSlot" type="Node3D" parent="CharacterBody3D/FollowCamera"]
+[node name="Inventory" type="Node3D" parent="CharacterBody3D/FollowCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190307, 0, -0.22775)
-script = ExtResource("4_84utv")
+script = ExtResource("4_akw4a")
 
 [connection signal="ChangeEquipment" from="." to="." method="EquipmentChange"]
 [connection signal="UseEquipment" from="." to="." method="Use"]

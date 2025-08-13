@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgv833fdh338m"]
 
-[ext_resource type="Script" uid="uid://cd7hu2tayqd0d" path="res://Scenes/Entities/Enemies/Templates/Enemy.cs" id="1_vde8y"]
+[ext_resource type="Script" uid="uid://cd7hu2tayqd0d" path="res://Scripts/Entities/Enemy.cs" id="1_vde8y"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_aiuiv"]
 
