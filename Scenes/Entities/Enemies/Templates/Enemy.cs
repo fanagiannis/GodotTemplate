@@ -13,7 +13,18 @@ public partial class Enemy : MovableEntity
     public override void _Ready()
     {
         base._Ready();
-        nameDisplay.Text=name;
+        UpdateStats();
+    }
+    public override void Damage(float value)
+    {
+        base.Damage(value);
+        UpdateStats();
+    }
+
+
+    public void UpdateStats()
+    {
+        nameDisplay.Text = name;
         HealthDisplay.Text = HealthPoints().ToString();
     }
 }

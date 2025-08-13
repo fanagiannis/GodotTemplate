@@ -3,6 +3,10 @@ using System;
 
 public partial class Entity : Node3D
 {
+	[Signal]
+	public delegate void DamageTakenEventHandler(float value);
+	[Signal]
+	public delegate void DeathEventHandler();
 	[Export]
 	private float health = 100f;
 	[Export]
@@ -24,7 +28,22 @@ public partial class Entity : Node3D
 
 	public void TakeDamage(float value)
 	{
+		EmitSignal(SignalName.DamageTaken,value);	
+	}
+
+	public virtual void Damage(float value)
+	{
 		HP.TakeDamage(value);
+		GD.Print("ouch");
+		if (HP.Value() <= 0)
+			EmitSignal(SignalName.Death);
+	}
+
+	public virtual void Kill()
+	{
+		isDead = true;
+		SetProcess(false);
+		Visible = false;
 	}
 
 	public void DecStamina(float value)

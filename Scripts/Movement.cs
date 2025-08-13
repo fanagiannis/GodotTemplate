@@ -30,8 +30,8 @@ public partial class Movement : CharacterBody3D
         if (result.Count > 0)
         {
             isOnFloor = true;
-            GD.Print("Hit object: ", result["collider"]);
-            GD.Print("Hit position: ", result["position"]);
+            //GD.Print("Hit object: ", result["collider"]);
+            //GD.Print("Hit position: ", result["position"]);
         }
         else
         {

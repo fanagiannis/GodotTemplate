@@ -31,3 +31,5 @@ text = "enemy
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.390705, 1.21954, 0)
 text = "00
 "
+
+[connection signal="DamageTaken" from="." to="." method="Damage"]
