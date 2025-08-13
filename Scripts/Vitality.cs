@@ -10,6 +10,12 @@ public class Health
 		maxHealth = maxValue;
 	}
 
+	public void TakeDamage(float value)
+	{
+		if(currentHealth>0)
+			currentHealth-=value;
+	}
+
 	public float Value()
 	{
 		return Mathf.Max(0,currentHealth);
@@ -19,7 +25,7 @@ public class Health
 	{
 		return maxHealth;
 	}
-	}
+}
 
 public class Stamina
 {
@@ -30,6 +36,11 @@ public class Stamina
         maxStamina = maxValue;
     }
 
+	public void DecStamina(float value)
+	{
+		if(currentStamina>0)
+			currentStamina-=value;
+	}
     public float Value()
     {
         return currentStamina;

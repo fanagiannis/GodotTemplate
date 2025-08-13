@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgv833fdh338m"]
+
+[ext_resource type="Script" uid="uid://cd7hu2tayqd0d" path="res://Scenes/Entities/Enemies/Templates/Enemy.cs" id="1_vde8y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_aiuiv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vde8y"]
+albedo_color = Color(1, 0.141176, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aiuiv"]
+
+[node name="EnemyTemplate" type="CharacterBody3D" node_paths=PackedStringArray("nameDisplay", "HealthDisplay")]
+script = ExtResource("1_vde8y")
+name = "Template"
+nameDisplay = NodePath("NameLabel")
+HealthDisplay = NodePath("HealthLabel")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_aiuiv")
+surface_material_override/0 = SubResource("StandardMaterial3D_vde8y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_aiuiv")
+
+[node name="NameLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149806, 1.21954, 0)
+text = "enemy
+"
+
+[node name="HealthLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.390705, 1.21954, 0)
+text = "00
+"

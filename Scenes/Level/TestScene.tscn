@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmff5f7mdbkxo"]
+[gd_scene load_steps=8 format=3 uid="uid://cmff5f7mdbkxo"]
 
 [ext_resource type="PackedScene" uid="uid://bwtjx04v8jic1" path="res://Scenes/Entities/Player/Player.tscn" id="1_800fl"]
+[ext_resource type="PackedScene" uid="uid://dgv833fdh338m" path="res://Scenes/Entities/Enemies/Templates/EnemyTemplate.tscn" id="2_abcag"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_800fl"]
 
@@ -43,3 +44,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_800fl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_800fl")
+
+[node name="EnemyTemplate" parent="." instance=ExtResource("2_abcag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)

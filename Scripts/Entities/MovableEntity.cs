@@ -8,6 +8,12 @@ public partial class MovableEntity : Entity
     [Export]
     private float maxSpeed;
 
+    public override void _Ready()
+    {
+        base._Ready();
+    }
+
+
     public float GetSpeed()
     {
         return Speed;
