@@ -48,5 +48,4 @@ shape = SubResource("BoxShape3D_800fl")
 [node name="EnemyTemplate" parent="." instance=ExtResource("2_abcag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
 
-[connection signal="UseEquipment" from="Player" to="Player" method="Use"]
 [connection signal="Death" from="EnemyTemplate" to="EnemyTemplate" method="Kill"]
