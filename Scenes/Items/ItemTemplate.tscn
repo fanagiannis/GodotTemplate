@@ -1,16 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjyphh0cp3nek"]
 
-[ext_resource type="Script" uid="uid://bjm7cyaudb54h" path="res://Scripts/Item.cs" id="1_3cxl5"]
+[ext_resource type="Script" uid="uid://copqpfed0w7u3" path="res://Scripts/Weapon.cs" id="1_3cxl5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2l4a4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2l4a4"]
 albedo_color = Color(0, 1, 1, 1)
 
-[node name="ItemTemplate" type="MeshInstance3D"]
+[node name="WeaponTemplate" type="MeshInstance3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_2l4a4")
 surface_material_override/0 = SubResource("StandardMaterial3D_2l4a4")
 script = ExtResource("1_3cxl5")
-itemInstance = null
-itemName = "ItemTemplate"
+weaponName = "Template"
+currentAmmo = 10
+maxAmmo = 60
+magSize = 10
+currentMags = 2

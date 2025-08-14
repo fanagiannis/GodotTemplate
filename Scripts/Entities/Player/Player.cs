@@ -12,11 +12,15 @@ public partial class Player : MovableEntity
     [Export]
     private Node3D Camera;
     [Export]
-    private Inventory inventory;
+    private WeaponHolder WeaponsEquipped;
+    [Export]
+    private PackedScene testweapon;
 
     public override void _Ready()
     {
         base._Ready();
+        WeaponsEquipped.AddWeapon(testweapon);
+        
     }
 
 
