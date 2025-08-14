@@ -16,4 +16,3 @@ skin = SubResource("Skin_1j4gx")
 surface_material_override/0 = SubResource("StandardMaterial3D_r26yx")
 script = ExtResource("1_1j4gx")
 weaponName = "Base Weapon"
-damage = "10"

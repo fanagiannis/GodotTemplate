@@ -20,7 +20,7 @@ public partial class Player : MovableEntity
     {
         base._Ready();
         WeaponsEquipped.AddWeapon(testweapon);
-        
+
     }
 
 
@@ -59,33 +59,7 @@ public partial class Player : MovableEntity
 
     public void FireWeapon()
     {
-        Vector3 origin = Camera.GlobalPosition;
-        var direction = -Camera.GlobalTransform.Basis.Z;
-        var spaceState = GetWorld3D().DirectSpaceState;
-
-        var query = new PhysicsRayQueryParameters3D
-        {
-            From = origin,
-            To = origin+direction*10f,
-            CollideWithAreas = false,
-            CollideWithBodies = true
-        };
-
-        var result = spaceState.IntersectRay(query);
-        if (result.Count > 0)
-        {
-            var collider = result["collider"].AsGodotObject();
-            var position = (Vector3)result["position"];
-            Entity entity = collider as Entity;
-            if (entity != null)
-            {
-                entity.EmitSignal(SignalName.DamageTaken,10f);
-            }
-        }
-        else
-        {
-            GD.Print("Missed!");
-        }
+        WeaponsEquipped.EquippedWeapon().Fire();
     }
 
 

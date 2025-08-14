@@ -41,7 +41,7 @@ public partial class WeaponHolder : Node3D
 			currentWeapon = weapons[currentIndex];
 			currentWeapon.Visible = true;
 		}
-		
+
 	}
 
 	public void RemoveWeapon(Weapon weapon)
@@ -54,6 +54,11 @@ public partial class WeaponHolder : Node3D
 				return;
 			}
 		}
+	}
+
+	public Weapon EquippedWeapon()
+	{
+		return currentWeapon;
 	}
 	
 }
