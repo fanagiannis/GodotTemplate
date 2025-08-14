@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba5xy1wfp4c31"]
+[gd_scene load_steps=5 format=3 uid="uid://kjlxq7vbh1h0"]
 
-[ext_resource type="Script" uid="uid://copqpfed0w7u3" path="res://Scripts/Weapon.cs" id="1_1j4gx"]
+[ext_resource type="Script" uid="uid://copqpfed0w7u3" path="res://Scripts/Weapon.cs" id="1_3tlcc"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_53w8s"]
 
 [sub_resource type="Skin" id="Skin_1j4gx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r26yx"]
-albedo_color = Color(0.341176, 0, 1, 1)
+albedo_color = Color(0.341176, 0, 0, 1)
 
 [node name="BaseWeapon" type="MeshInstance3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("SphereMesh_53w8s")
 skin = SubResource("Skin_1j4gx")
 surface_material_override/0 = SubResource("StandardMaterial3D_r26yx")
-script = ExtResource("1_1j4gx")
+script = ExtResource("1_3tlcc")
 weaponName = "Base Weapon"
 damage = 10.0
 range = 100.0

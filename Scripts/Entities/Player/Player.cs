@@ -10,7 +10,7 @@ public partial class Player : MovableEntity
     [Export]
     private Movement movement;
     [Export]
-    private Node3D Camera;
+    private Camera3D Camera;
     [Export]
     private WeaponHolder WeaponsEquipped;
     [Export]
@@ -48,7 +48,7 @@ public partial class Player : MovableEntity
 
     public void Use()
     {
-        FireWeapon();
+         FireWeapon();
         //GD.Print("bang");
     }
 
@@ -59,7 +59,7 @@ public partial class Player : MovableEntity
 
     public void FireWeapon()
     {
-        WeaponsEquipped.EquippedWeapon().Fire();
+        WeaponsEquipped.EquippedWeapon().Fire(Camera);
     }
 
 

@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
+[GlobalClass]
 public partial class WeaponHolder : Node3D
 {
 	[Export]
@@ -21,27 +22,32 @@ public partial class WeaponHolder : Node3D
 		Weapon newWpn = weapon.Instantiate<Weapon>();
 		AddChild(newWpn);
 		newWpn.Visible = true;
+		currentWeapon = newWpn;
 		weapons.Add(newWpn);
-		GD.Print(newWpn + " equipped");
+		GD.Print(newWpn.WeaponName() + " equipped");
 
 	}
 
 	public void EquipWeapon(int index)
 	{
-		if (weapons.Count > 1)
+		if (index < 0 || index >= weapons.Count)
 		{
-			weapons[currentIndex].Visible = false;
-			currentIndex = index;
-			currentWeapon = weapons[index];
-			currentWeapon.Visible = true;
-		}
-		else
-		{
-			currentIndex = 0;
-			currentWeapon = weapons[currentIndex];
-			currentWeapon.Visible = true;
+			GD.PrintErr($"Invalid weapon index: {index}");
+			return;
 		}
 
+		// Hide currently equipped weapon (if any)
+		if (currentWeapon != null)
+		{
+			currentWeapon.Visible = false;
+		}
+
+		// Equip new weapon
+		currentIndex = index;
+		currentWeapon = weapons[index];
+		currentWeapon.Visible = true;
+
+		GD.Print($"Equipped weapon: {currentWeapon.WeaponName()}");
 	}
 
 	public void RemoveWeapon(Weapon weapon)
@@ -58,7 +64,8 @@ public partial class WeaponHolder : Node3D
 
 	public Weapon EquippedWeapon()
 	{
+		GD.Print(currentWeapon.WeaponName());
 		return currentWeapon;
 	}
-	
+
 }
