@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmff5f7mdbkxo"]
+[gd_scene load_steps=9 format=3 uid="uid://cmff5f7mdbkxo"]
 
 [ext_resource type="PackedScene" uid="uid://bwtjx04v8jic1" path="res://Scenes/Entities/Player/Player.tscn" id="1_800fl"]
 [ext_resource type="PackedScene" uid="uid://dgv833fdh338m" path="res://Scenes/Entities/Enemies/Templates/EnemyTemplate.tscn" id="2_abcag"]
+[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/BaseWeapon2.tscn" id="2_kyooy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_800fl"]
 
@@ -19,6 +20,7 @@ albedo_color = Color(0, 0.211765, 1, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_800fl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186557, -0.276722, 0.257098)
+testweapon2 = ExtResource("2_kyooy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.683796, 0.729673, 0, -0.729673, 0.683796, -0.62407, 5.8783, 7.22687)

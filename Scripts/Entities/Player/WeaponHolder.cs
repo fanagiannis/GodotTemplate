@@ -50,6 +50,19 @@ public partial class WeaponHolder : Node3D
 		GD.Print($"Equipped weapon: {currentWeapon.WeaponName()}");
 	}
 
+	public void ChangeWeapon()
+	{
+		weapons[currentIndex].Visible = false;
+		currentIndex++;
+		if (currentIndex > weapons.Count-1)
+		{
+			currentIndex = 0;
+		}
+		currentWeapon = weapons[currentIndex];
+		weapons[currentIndex].Visible = true;
+		GD.Print(currentIndex +" "+currentWeapon.WeaponName());
+	}
+
 	public void RemoveWeapon(Weapon weapon)
 	{
 		foreach (Weapon wpn in weapons)

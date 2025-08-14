@@ -15,11 +15,14 @@ public partial class Player : MovableEntity
     private WeaponHolder WeaponsEquipped;
     [Export]
     private PackedScene testweapon;
+    [Export]
+    private PackedScene testweapon2;
 
     public override void _Ready()
     {
         base._Ready();
         WeaponsEquipped.AddWeapon(testweapon);
+        WeaponsEquipped.AddWeapon(testweapon2);
 
     }
 
@@ -32,12 +35,20 @@ public partial class Player : MovableEntity
             {
                 EmitSignal(SignalName.UseEquipment);
             }
-            if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
-            {
-                EmitSignal(SignalName.ChangeEquipment);
-            }
         }
     }
+
+    public override void _UnhandledInput(InputEvent @event)
+{
+    if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
+    {
+        if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
+        {
+            WeaponsEquipped.ChangeWeapon(); // +1 means "next"
+            EmitSignal(SignalName.ChangeEquipment);
+        }
+    }
+}
 
 
     public override void _Process(double delta)
