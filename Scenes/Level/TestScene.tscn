@@ -21,8 +21,8 @@ albedo_color = Color(0, 0.211765, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186557, -0.276722, 0.257098)
 
 [node name="CharacterBody3D" parent="Player" index="0"]
-jumpForce = 30.0
-gravityScale = 25.0
+jumpForce = 35.0
+gravityScale = 100.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.683796, 0.729673, 0, -0.729673, 0.683796, -0.62407, 5.8783, 7.22687)

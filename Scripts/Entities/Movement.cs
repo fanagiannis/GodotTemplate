@@ -52,7 +52,7 @@ public partial class Movement : CharacterBody3D
         }
         else
         {
-            jump = new Vector3(Velocity.X, 0, Velocity.Z);
+            jump = new Vector3(Velocity.X, Velocity.Y, Velocity.Z);
           
         }
 
@@ -67,7 +67,7 @@ public partial class Movement : CharacterBody3D
         Vector3 gravity = new Vector3(0, 0, 0);
         if (isOnFloor)
         {
-            gravity = new Vector3(Velocity.X, 0, Velocity.Z);
+            gravity = new Vector3(Velocity.X, Velocity.Y, Velocity.Z);
         }
         else
         {
@@ -120,7 +120,7 @@ public partial class Movement : CharacterBody3D
         if (Input.IsKeyPressed(Godot.Key.Space))
         {
            
-            Jump(delta);
+            //Jump(delta);
         }
 
         
