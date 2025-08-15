@@ -5,7 +5,8 @@ public partial class Movement : CharacterBody3D
 {
     [Export]
     private MovableEntity entity;
-
+    [Export]
+    private float jumpForce=100f;
     [Export]
     private float gravityScale = 9.14f;
     private bool isOnFloor = false;
@@ -39,6 +40,26 @@ public partial class Movement : CharacterBody3D
         }
     }
 
+    private void Jump(double delta)
+    {
+        CheckFloorPosition();
+
+        Vector3 jump = new Vector3(0, 0, 0);
+        if (isOnFloor)
+        {
+            GD.Print("jump");
+            jump = new Vector3(Velocity.X, jumpForce, Velocity.Z);
+        }
+        else
+        {
+            jump = new Vector3(Velocity.X, 0, Velocity.Z);
+          
+        }
+
+
+        Velocity += jump * (float)delta;
+    }
+
     private void Gravity(double delta)
     {
         CheckFloorPosition();
@@ -46,12 +67,12 @@ public partial class Movement : CharacterBody3D
         Vector3 gravity = new Vector3(0, 0, 0);
         if (isOnFloor)
         {
-            gravity = new Vector3(0, 0, 0);
+            gravity = new Vector3(Velocity.X, 0, Velocity.Z);
         }
         else
         {
 
-            gravity = new Vector3(0, gravityScale, 0);
+            gravity = new Vector3(Velocity.X, gravityScale, Velocity.Z);
         }
 
 
@@ -82,9 +103,11 @@ public partial class Movement : CharacterBody3D
             direction += aim.X;
         }
 
+       
         direction = direction.Normalized();
 
         Velocity = direction * entity.GetSpeed();
+        
         if (Velocity.Length() > 0)
         {
             isMoving = true;
@@ -94,6 +117,13 @@ public partial class Movement : CharacterBody3D
             isMoving = false;
         }
         Gravity(delta);
+        if (Input.IsKeyPressed(Godot.Key.Space))
+        {
+           
+            Jump(delta);
+        }
+
+        
         MoveAndSlide();
         //GD.Print(isMoving,isOnFloor);
     }

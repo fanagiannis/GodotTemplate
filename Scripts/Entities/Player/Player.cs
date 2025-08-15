@@ -61,13 +61,20 @@ public partial class Player : MovableEntity
 
     public override void _Process(double delta)
     {
+       
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
         movement.Update(delta);
     }
 
 
+
     public void Use()
     {
-         FireWeapon();
+        FireWeapon();
         //GD.Print("bang");
     }
 
