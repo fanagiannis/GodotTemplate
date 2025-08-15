@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://du6nmg7k4eewi"]
+
+[ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/BaseWeapon.tscn" id="1_5telf"]
+[ext_resource type="PackedScene" uid="uid://bm2kqy5qni5sp" path="res://Assets/GunPlaceholder/Pistol.gltf" id="2_f3vsc"]
+
+[node name="BaseWeapon" instance=ExtResource("1_5telf")]
+mesh = null
+weaponName = "Pistol"
+
+[node name="blockbench_export" parent="." index="0" instance=ExtResource("2_f3vsc")]
