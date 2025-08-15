@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://kjlxq7vbh1h0"]
+[gd_scene load_steps=6 format=3 uid="uid://kjlxq7vbh1h0"]
 
-[ext_resource type="Script" uid="uid://copqpfed0w7u3" path="res://Scripts/Weapon.cs" id="1_3tlcc"]
+[ext_resource type="Script" uid="uid://copqpfed0w7u3" path="res://Scripts/Items/Weapon.cs" id="1_3tlcc"]
+[ext_resource type="Resource" uid="uid://bldxf5c6bkusg" path="res://Scripts/Resource/WeaponSound.tres" id="2_rrm3r"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_53w8s"]
 
@@ -16,5 +17,10 @@ skin = SubResource("Skin_1j4gx")
 surface_material_override/0 = SubResource("StandardMaterial3D_r26yx")
 script = ExtResource("1_3tlcc")
 weaponName = "Base Weapon 2"
+Sounds = ExtResource("2_rrm3r")
 damage = 25.0
 range = 100.0
+currentAmmo = 5
+maxAmmo = 30
+magSize = 5
+currentMags = 5

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WeaponSound" load_steps=2 format=3 uid="uid://bldxf5c6bkusg"]
+
+[ext_resource type="Script" uid="uid://sbw1jasxp2v" path="res://Scripts/Resource/WeaponSound.cs" id="1_gk7ny"]
+
+[resource]
+script = ExtResource("1_gk7ny")
+metadata/_custom_type_script = "uid://sbw1jasxp2v"

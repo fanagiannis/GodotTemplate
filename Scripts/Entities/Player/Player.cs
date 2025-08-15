@@ -7,6 +7,8 @@ public partial class Player : MovableEntity
     public delegate void UseEquipmentEventHandler();
     [Signal]
     public delegate void ChangeEquipmentEventHandler();
+    [Signal]
+    public delegate void ReloadEventHandler();
     [Export]
     private Movement movement;
     [Export]
@@ -36,18 +38,24 @@ public partial class Player : MovableEntity
                 EmitSignal(SignalName.UseEquipment);
             }
         }
+        
     }
 
     public override void _UnhandledInput(InputEvent @event)
-{
-    if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
     {
-        if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
+        if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
         {
-            WeaponsEquipped.ChangeWeapon(); // +1 means "next"
-            EmitSignal(SignalName.ChangeEquipment);
+            if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
+            {
+                WeaponsEquipped.ChangeWeapon(); // +1 means "next"
+                EmitSignal(SignalName.ChangeEquipment);
+            }
         }
-    }
+        if (Input.IsKeyPressed(Godot.Key.R))
+        {
+            WeaponsEquipped.EquippedWeapon().Reload();
+            EmitSignal(SignalName.Reload);
+        }
 }
 
 

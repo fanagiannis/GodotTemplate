@@ -6,6 +6,8 @@ using System;
 public partial class WeaponHolder : Node3D
 {
 	[Export]
+	private Label weaponStats;
+	[Export]
 	private Array<Weapon> weapons = new Array<Weapon>();
 	private Weapon currentWeapon;
 	private int currentIndex;
@@ -25,6 +27,7 @@ public partial class WeaponHolder : Node3D
 		currentWeapon = newWpn;
 		weapons.Add(newWpn);
 		GD.Print(newWpn.WeaponName() + " equipped");
+		SetWeaponDisplay();
 
 	}
 
@@ -54,13 +57,14 @@ public partial class WeaponHolder : Node3D
 	{
 		weapons[currentIndex].Visible = false;
 		currentIndex++;
-		if (currentIndex > weapons.Count-1)
+		if (currentIndex > weapons.Count - 1)
 		{
 			currentIndex = 0;
 		}
 		currentWeapon = weapons[currentIndex];
 		weapons[currentIndex].Visible = true;
-		GD.Print(currentIndex +" "+currentWeapon.WeaponName());
+		GD.Print(currentIndex + " " + currentWeapon.WeaponName());
+		SetWeaponDisplay();
 	}
 
 	public void RemoveWeapon(Weapon weapon)
@@ -77,8 +81,13 @@ public partial class WeaponHolder : Node3D
 
 	public Weapon EquippedWeapon()
 	{
-		GD.Print(currentWeapon.WeaponName());
+		//GD.Print(currentWeapon.WeaponName());
 		return currentWeapon;
+	}
+
+	public void SetWeaponDisplay()
+	{
+		weaponStats.Text = currentWeapon.WeaponName() + "\n" + currentWeapon.GetCurrentAmmo() + "/" + currentWeapon.GetMaxAmmo();
 	}
 
 }

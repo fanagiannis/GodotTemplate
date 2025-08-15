@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwtjx04v8jic1"]
+[gd_scene load_steps=9 format=3 uid="uid://bwtjx04v8jic1"]
 
 [ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_7kpwk"]
-[ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Movement.cs" id="2_qer5h"]
+[ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Entities/Movement.cs" id="2_qer5h"]
 [ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/BaseWeapon.tscn" id="2_tm67w"]
-[ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/CameraController.cs" id="3_pmdnf"]
+[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/BaseWeapon2.tscn" id="3_84utv"]
+[ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/Entities/Player/CameraController.cs" id="3_pmdnf"]
 [ext_resource type="Script" uid="uid://croq57jmjsjsf" path="res://Scripts/Entities/Player/WeaponHolder.cs" id="5_tm67w"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pmdnf"]
@@ -16,6 +17,7 @@ movement = NodePath("CharacterBody3D")
 Camera = NodePath("CharacterBody3D/FollowCamera")
 WeaponsEquipped = NodePath("CharacterBody3D/FollowCamera/WeaponHolder")
 testweapon = ExtResource("2_tm67w")
+testweapon2 = ExtResource("3_84utv")
 Speed = 2.0
 maxSpeed = 3.0
 
@@ -61,9 +63,28 @@ grow_vertical = 2
 text = "X"
 horizontal_alignment = 1
 
-[node name="WeaponHolder" type="Node3D" parent="CharacterBody3D/FollowCamera"]
+[node name="WeaponHolder" type="Node3D" parent="CharacterBody3D/FollowCamera" node_paths=PackedStringArray("weaponStats")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190307, 0, -0.22775)
 script = ExtResource("5_tm67w")
+weaponStats = NodePath("../WeaponStats")
+
+[node name="WeaponStats" type="Label" parent="CharacterBody3D/FollowCamera"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "weapon"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="ChangeEquipment" from="." to="." method="EquipmentChange"]
+[connection signal="Reload" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]
 [connection signal="UseEquipment" from="." to="." method="Use"]
+[connection signal="UseEquipment" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]
