@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 public class Health
 {
@@ -10,10 +11,19 @@ public class Health
 		maxHealth = maxValue;
 	}
 
+	public void Heal(float value)
+	{
+		currentHealth += value;
+		if (currentHealth > maxHealth)
+		{
+			currentHealth = maxHealth;
+		}
+	}
+
 	public void TakeDamage(float value)
 	{
-		if(currentHealth>0)
-			currentHealth-=value;
+		if (currentHealth > 0)
+			currentHealth -= value;
 	}
 
 	public float Value()

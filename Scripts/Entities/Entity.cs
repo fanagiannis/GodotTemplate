@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class Entity : Node3D
 {
@@ -16,7 +17,7 @@ public partial class Entity : Node3D
 	[Export]
 	private float maxStamina = 100f;
 	//, maxHealth, stamina, maxStamina;
-	private Health HP;
+	protected Health HP;
 	private Stamina Stamina ;
 	private bool isDead=false;
 
@@ -26,9 +27,14 @@ public partial class Entity : Node3D
 		Stamina = new Stamina(stamina,maxStamina);
 	}
 
+	public virtual void Heal(float value)
+	{
+		HP.Heal(value);
+	}
+
 	public void TakeDamage(float value)
 	{
-		EmitSignal(SignalName.DamageTaken,value);	
+		EmitSignal(SignalName.DamageTaken, value);
 	}
 
 	public virtual void Damage(float value)

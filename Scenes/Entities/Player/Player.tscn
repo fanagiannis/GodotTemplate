@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_7kpwk"]
 [ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Entities/Movement.cs" id="2_qer5h"]
-[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/BaseWeapon2.tscn" id="3_84utv"]
+[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/SMG.tscn" id="3_84utv"]
 [ext_resource type="PackedScene" uid="uid://du6nmg7k4eewi" path="res://Scenes/Items/Pistol.tscn" id="3_hi4ft"]
 [ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/Entities/Player/CameraController.cs" id="3_pmdnf"]
 [ext_resource type="Script" uid="uid://croq57jmjsjsf" path="res://Scripts/Entities/Player/WeaponHolder.cs" id="5_tm67w"]
@@ -11,15 +11,17 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pmdnf"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "Camera", "WeaponsEquipped")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "Camera", "WeaponsEquipped", "healthUI")]
 script = ExtResource("1_7kpwk")
 movement = NodePath("CharacterBody3D")
 Camera = NodePath("CharacterBody3D/FollowCamera")
 WeaponsEquipped = NodePath("CharacterBody3D/FollowCamera/WeaponHolder")
+healthUI = NodePath("CharacterBody3D/FollowCamera/Health")
 testweapon = ExtResource("3_84utv")
 testweapon2 = ExtResource("3_hi4ft")
 Speed = 2.0
 maxSpeed = 3.0
+health = 90.0
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity")]
 disable_mode = 2
@@ -83,6 +85,11 @@ size_flags_vertical = 6
 text = "weapon"
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="Health" type="Label" parent="CharacterBody3D/FollowCamera"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0/0"
 
 [connection signal="ChangeEquipment" from="." to="." method="EquipmentChange"]
 [connection signal="Reload" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]

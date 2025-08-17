@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Net.Http;
 
 public partial class Player : MovableEntity
 {
@@ -16,6 +17,8 @@ public partial class Player : MovableEntity
     [Export]
     private WeaponHolder WeaponsEquipped;
     [Export]
+    private Label healthUI;
+    [Export]
     private PackedScene testweapon;
     [Export]
     private PackedScene testweapon2;
@@ -25,7 +28,7 @@ public partial class Player : MovableEntity
         base._Ready();
         WeaponsEquipped.AddWeapon(testweapon);
         WeaponsEquipped.AddWeapon(testweapon2);
-
+        UpdateUI();
     }
 
 
@@ -38,7 +41,7 @@ public partial class Player : MovableEntity
                 EmitSignal(SignalName.UseEquipment);
             }
         }
-        
+
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -56,12 +59,12 @@ public partial class Player : MovableEntity
             WeaponsEquipped.EquippedWeapon().Reload();
             EmitSignal(SignalName.Reload);
         }
-}
+    }
 
 
     public override void _Process(double delta)
     {
-       
+
     }
 
     public override void _PhysicsProcess(double delta)
@@ -70,6 +73,11 @@ public partial class Player : MovableEntity
         movement.Update(delta);
     }
 
+    public override void Heal(float value)
+    {
+        HP.Heal(value);
+        UpdateUI();
+    }
 
 
     public void Use()
@@ -86,6 +94,10 @@ public partial class Player : MovableEntity
     public void FireWeapon()
     {
         WeaponsEquipped.EquippedWeapon().Fire(Camera);
+    }
+    public void UpdateUI()
+    {
+        healthUI.Text = HP.Value() + " / " + HP.maxValue();
     }
 
 

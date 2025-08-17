@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://kjlxq7vbh1h0"]
+
+[ext_resource type="Script" uid="uid://copqpfed0w7u3" path="res://Scripts/Items/Weapon.cs" id="1_7egdc"]
+[ext_resource type="Resource" uid="uid://bldxf5c6bkusg" path="res://Scripts/Resource/WeaponSound.tres" id="2_etaiv"]
+[ext_resource type="PackedScene" uid="uid://dainsckqycpc2" path="res://Assets/GunPlaceholder/SMG.gltf" id="3_a03ye"]
+
+[sub_resource type="Skin" id="Skin_1j4gx"]
+
+[sub_resource type="Animation" id="Animation_7egdc"]
+resource_name = "Idle"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array()
+
+[sub_resource type="Animation" id="Animation_etaiv"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a03ye"]
+_data = {
+&"Idle": SubResource("Animation_7egdc"),
+&"RESET": SubResource("Animation_etaiv")
+}
+
+[node name="BaseWeapon" type="MeshInstance3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+skin = SubResource("Skin_1j4gx")
+script = ExtResource("1_7egdc")
+weaponName = "SMG"
+Sounds = ExtResource("2_etaiv")
+damage = 5.0
+range = 100.0
+currentAmmo = 5
+maxAmmo = 30
+magSize = 5
+currentMags = 5
+
+[node name="blockbench_export" parent="." instance=ExtResource("3_a03ye")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a03ye")
+}
