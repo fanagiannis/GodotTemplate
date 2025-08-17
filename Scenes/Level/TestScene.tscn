@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmff5f7mdbkxo"]
+[gd_scene load_steps=11 format=3 uid="uid://cmff5f7mdbkxo"]
 
 [ext_resource type="PackedScene" uid="uid://bwtjx04v8jic1" path="res://Scenes/Entities/Player/Player.tscn" id="1_800fl"]
 [ext_resource type="PackedScene" uid="uid://dgv833fdh338m" path="res://Scenes/Entities/Enemies/Templates/EnemyTemplate.tscn" id="2_abcag"]
 [ext_resource type="PackedScene" uid="uid://c0277iydc025m" path="res://Scenes/Pickups/PickupTemplate.tscn" id="3_kyooy"]
+[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/SMG.tscn" id="4_mghjn"]
+[ext_resource type="PackedScene" uid="uid://du6nmg7k4eewi" path="res://Scenes/Items/Pistol.tscn" id="4_u70ee"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_800fl"]
 
@@ -52,16 +54,23 @@ shape = SubResource("BoxShape3D_800fl")
 [node name="EnemyTemplate" parent="." instance=ExtResource("2_abcag")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4, -0.230139, -4)
 
-[node name="PickupTemplate3" parent="." instance=ExtResource("3_kyooy")]
+[node name="WeaponPickup2" parent="." instance=ExtResource("3_kyooy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.73358, 0.363008, 8.14835)
+item = 2
+itemInstance = ExtResource("4_mghjn")
+
+[node name="WeaponPickup" parent="." instance=ExtResource("3_kyooy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36679, 0.181504, 6.84183)
 item = 2
+itemInstance = ExtResource("4_u70ee")
 
 [node name="PickupTemplate2" parent="." instance=ExtResource("3_kyooy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0721278, 0.121003, 10.2627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.751021, -0.24445, 9.50525)
 item = 1
+value = 40.0
 
 [node name="PickupTemplate" parent="." instance=ExtResource("3_kyooy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.19005, 0.0605014, 5.13133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1667, 0.0605019, 5.15085)
 value = 10.0
 
 [connection signal="Death" from="EnemyTemplate" to="EnemyTemplate" method="Kill"]

@@ -19,16 +19,17 @@ public partial class WeaponHolder : Node3D
 			GD.Print("null");
 			return;
 		}
-
-
 		Weapon newWpn = weapon.Instantiate<Weapon>();
 		AddChild(newWpn);
-		newWpn.Visible = true;
 		currentWeapon = newWpn;
+		foreach (Weapon instance in weapons)
+		{
+			instance.Visible = false;
+		}
+		currentWeapon.Visible = true;
 		weapons.Add(newWpn);
 		GD.Print(newWpn.WeaponName() + " equipped");
 		SetWeaponDisplay();
-
 	}
 
 	public void EquipWeapon(int index)
@@ -89,5 +90,17 @@ public partial class WeaponHolder : Node3D
 	{
 		weaponStats.Text = currentWeapon.WeaponName() + "\n" + currentWeapon.GetCurrentAmmo() + "/" + currentWeapon.GetMaxAmmo();
 	}
+
+	public void AddAmmo(int value)
+	{
+		EquippedWeapon().AddAmmo((int)value);
+		SetWeaponDisplay();
+	}
+
+	public int GetWeaponsListLength()
+	{
+		return weapons.Count;
+	}
+
 
 }

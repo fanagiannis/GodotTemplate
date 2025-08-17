@@ -6,5 +6,10 @@
 [node name="BaseWeapon" instance=ExtResource("1_5telf")]
 mesh = null
 weaponName = "Pistol"
+damage = 5.0
+range = 10.0
+currentAmmo = 10
+maxAmmo = 100
+magSize = 10
 
 [node name="blockbench_export" parent="." index="0" instance=ExtResource("2_f3vsc")]

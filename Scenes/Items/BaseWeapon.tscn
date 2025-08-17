@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba5xy1wfp4c31"]
+[gd_scene load_steps=5 format=3 uid="uid://ba5xy1wfp4c31"]
 
-[ext_resource type="Script" uid="uid://copqpfed0w7u3" path="res://Scripts/Items/Weapon.cs" id="1_1j4gx"]
-[ext_resource type="Resource" uid="uid://bldxf5c6bkusg" path="res://Scripts/Resource/WeaponSound.tres" id="2_r26yx"]
+[ext_resource type="Script" uid="uid://0we2qdr3bnmh" path="res://Scenes/Items/Melee.cs" id="1_1j4gx"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_53w8s"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_r26yx"]
 
 [sub_resource type="Skin" id="Skin_1j4gx"]
 
@@ -12,15 +11,10 @@ albedo_color = Color(0.341176, 0, 1, 1)
 
 [node name="BaseWeapon" type="MeshInstance3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = SubResource("SphereMesh_53w8s")
+mesh = SubResource("CylinderMesh_r26yx")
 skin = SubResource("Skin_1j4gx")
 surface_material_override/0 = SubResource("StandardMaterial3D_r26yx")
 script = ExtResource("1_1j4gx")
-weaponName = "Base Weapon"
-Sounds = ExtResource("2_r26yx")
-damage = 10.0
-range = 100.0
-currentAmmo = 10
-maxAmmo = 60
-magSize = 10
-currentMags = 5
+weaponName = "Base Melee"
+damage = 1.0
+range = 1.0

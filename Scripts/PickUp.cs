@@ -30,10 +30,15 @@ public partial class PickUp : Area3D
 					QueueFree();
 					return;
 				case itemType.Ammo:
+					player.GetWeaponHolder().AddAmmo((int)value);
 					QueueFree();
 					return;
 				case itemType.Weapon:
-					GD.Print("weapon");
+					if (itemInstance != null)
+					{
+						player.GetWeaponHolder().AddWeapon(itemInstance);
+					}
+					QueueFree();
 					return;
 			}
 

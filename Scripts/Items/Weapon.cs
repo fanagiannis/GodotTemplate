@@ -4,46 +4,20 @@ using System;
 public partial class Weapon : MeshInstance3D
 {
     [Export]
-    private string weaponName;
+    protected string weaponName;
     [Export]
     public WeaponSound Sounds;
     [Export]
-    private float damage;
+    protected float damage;
     [Export]
-    private float range;
+    protected float range;
     [Export]
     private int currentAmmo, maxAmmo, magSize, currentMags;
     public virtual void Fire(Camera3D Origin)
     {
         if (AmmoManipulation())
         {
-            Vector3 origin = Origin.GlobalPosition;
-            var direction = -Origin.GlobalTransform.Basis.Z;
-            var spaceState = GetWorld3D().DirectSpaceState;
-
-            var query = new PhysicsRayQueryParameters3D
-            {
-                From = origin,
-                To = origin + direction * range,
-                CollideWithAreas = false,
-                CollideWithBodies = true
-            };
-
-            var result = spaceState.IntersectRay(query);
-            if (result.Count > 0)
-            {
-                var collider = result["collider"].AsGodotObject();
-                var position = (Vector3)result["position"];
-                Entity entity = collider as Entity;
-                if (entity != null)
-                {
-                    entity.TakeDamage(damage);
-                }
-            }
-            else
-            {
-                GD.Print("Missed!");
-            } 
+            ShootRaycast(Origin);
         }
         
     }
@@ -57,6 +31,37 @@ public partial class Weapon : MeshInstance3D
 
     }
 
+    public void ShootRaycast(Camera3D Origin)
+    {
+        Vector3 origin = Origin.GlobalPosition;
+        var direction = -Origin.GlobalTransform.Basis.Z;
+        var spaceState = GetWorld3D().DirectSpaceState;
+
+        var query = new PhysicsRayQueryParameters3D
+        {
+            From = origin,
+            To = origin + direction * range,
+            CollideWithAreas = false,
+            CollideWithBodies = true
+        };
+
+        var result = spaceState.IntersectRay(query);
+        if (result.Count > 0)
+        {
+            var collider = result["collider"].AsGodotObject();
+            var position = (Vector3)result["position"];
+            Entity entity = collider as Entity;
+            if (entity != null)
+            {
+                entity.TakeDamage(damage);
+            }
+        }
+        else
+        {
+            GD.Print("Missed!");
+        }
+    }
+
     public bool AmmoManipulation()
     {
         if (currentAmmo > 0)
@@ -65,6 +70,11 @@ public partial class Weapon : MeshInstance3D
             return true;
         }
         return false;
+    }
+
+    public void AddAmmo(int value)
+    {
+        maxAmmo += value;
     }
 
     public string WeaponName()

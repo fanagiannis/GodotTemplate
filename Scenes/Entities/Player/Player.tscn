@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwtjx04v8jic1"]
+[gd_scene load_steps=8 format=3 uid="uid://bwtjx04v8jic1"]
 
 [ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_7kpwk"]
 [ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Entities/Movement.cs" id="2_qer5h"]
-[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/SMG.tscn" id="3_84utv"]
-[ext_resource type="PackedScene" uid="uid://du6nmg7k4eewi" path="res://Scenes/Items/Pistol.tscn" id="3_hi4ft"]
+[ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/BaseWeapon.tscn" id="2_tm67w"]
 [ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/Entities/Player/CameraController.cs" id="3_pmdnf"]
 [ext_resource type="Script" uid="uid://croq57jmjsjsf" path="res://Scripts/Entities/Player/WeaponHolder.cs" id="5_tm67w"]
 
@@ -17,8 +16,7 @@ movement = NodePath("CharacterBody3D")
 Camera = NodePath("CharacterBody3D/FollowCamera")
 WeaponsEquipped = NodePath("CharacterBody3D/FollowCamera/WeaponHolder")
 healthUI = NodePath("CharacterBody3D/FollowCamera/Health")
-testweapon = ExtResource("3_84utv")
-testweapon2 = ExtResource("3_hi4ft")
+baseWeapon = ExtResource("2_tm67w")
 Speed = 2.0
 maxSpeed = 3.0
 health = 90.0

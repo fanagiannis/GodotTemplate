@@ -19,15 +19,12 @@ public partial class Player : MovableEntity
     [Export]
     private Label healthUI;
     [Export]
-    private PackedScene testweapon;
-    [Export]
-    private PackedScene testweapon2;
+    private PackedScene baseWeapon;
 
     public override void _Ready()
     {
         base._Ready();
-        WeaponsEquipped.AddWeapon(testweapon);
-        WeaponsEquipped.AddWeapon(testweapon2);
+        WeaponsEquipped.AddWeapon(baseWeapon);
         UpdateUI();
     }
 
@@ -86,14 +83,17 @@ public partial class Player : MovableEntity
         //GD.Print("bang");
     }
 
-    public void EquipmentChange()
+    public WeaponHolder GetWeaponHolder()
     {
-        GD.Print("equipment changed");
+        return WeaponsEquipped;
     }
 
     public void FireWeapon()
     {
-        WeaponsEquipped.EquippedWeapon().Fire(Camera);
+        if (WeaponsEquipped.GetWeaponsListLength() > 0)
+            WeaponsEquipped.EquippedWeapon().Fire(Camera);
+        else
+            GD.Print("punch");
     }
     public void UpdateUI()
     {
