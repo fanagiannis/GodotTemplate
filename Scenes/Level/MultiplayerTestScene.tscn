@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://bx5ut6ri02wrc"]
+
+[ext_resource type="Script" uid="uid://bll4p6wc058dv" path="res://Scripts/Network/NetworkHandler.cs" id="1_661qh"]
+[ext_resource type="PackedScene" uid="uid://dgv833fdh338m" path="res://Scenes/Entities/Enemies/Templates/EnemyTemplate.tscn" id="2_661qh"]
+[ext_resource type="PackedScene" uid="uid://bvxiwi1hnpqtk" path="res://Scenes/Testing/MultiplayerTestingUI.tscn" id="2_p3flo"]
+[ext_resource type="Script" uid="uid://2euqcu10edxa" path="res://Scripts/Network/PlayerSpawner.cs" id="3_txxg7"]
+[ext_resource type="PackedScene" uid="uid://c4yae1e0qwrfw" path="res://Scenes/Entities/Player/NetworkPlayer.tscn" id="4_g7fa1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_800fl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_800fl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abcag"]
+albedo_color = Color(1, 0.15, 0.164166, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_800fl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_800fl"]
+albedo_color = Color(0, 0.211765, 1, 1)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_661qh")
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="SpawnPoints1" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03756, 5.33682)
+
+[node name="SpawnPoints2" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.59888, -0.0519221, -10.5129)
+
+[node name="SpawnPoints3" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06398, 0.67432, 2.77308)
+
+[node name="UI" parent="." node_paths=PackedStringArray("networkHandler") instance=ExtResource("2_p3flo")]
+networkHandler = NodePath("..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.683796, 0.729673, 0, -0.729673, 0.683796, -0.62407, 5.8783, 7.22687)
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.18557e-08, -1.01314e-07, 1, -0.866025, 1.33818, 0, -0.5, -2.3178, -4.37114e-08, -0.335317, -0.783043, -4.89283)
+physics_material_override = SubResource("PhysicsMaterial_800fl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+mesh = SubResource("BoxMesh_800fl")
+surface_material_override/0 = SubResource("StandardMaterial3D_abcag")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_800fl")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(18.0696, 0, 0, 0, 1, 0, 0, 0, 24.4292, 0, -1.3711, -0.45013)
+physics_material_override = SubResource("PhysicsMaterial_800fl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_800fl")
+surface_material_override/0 = SubResource("StandardMaterial3D_800fl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_800fl")
+
+[node name="EnemyTemplate" parent="." instance=ExtResource("2_661qh")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4, -0.230139, -4)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." node_paths=PackedStringArray("spawnPoints")]
+_spawnable_scenes = PackedStringArray("uid://c4yae1e0qwrfw")
+spawn_path = NodePath("..")
+spawn_limit = 2
+script = ExtResource("3_txxg7")
+networkPlayer = ExtResource("4_g7fa1")
+spawnPoints = [NodePath("../SpawnPoints/SpawnPoints1"), NodePath("../SpawnPoints/SpawnPoints2")]
+
+[connection signal="Death" from="EnemyTemplate" to="EnemyTemplate" method="Kill"]

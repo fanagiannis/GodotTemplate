@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4yae1e0qwrfw"]
 
-[ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_pwxi2"]
+[ext_resource type="Script" uid="uid://dsa45nywo2anr" path="res://Scripts/Entities/Player/NetworkPlayer.cs" id="1_pwxi2"]
 [ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/BaseWeapon.tscn" id="2_gqpug"]
 [ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Entities/Movement.cs" id="3_nm5wj"]
 [ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/Entities/Player/CameraController.cs" id="4_v25p8"]
@@ -30,7 +30,6 @@ healthUI = NodePath("CharacterBody3D/FollowCamera/Health")
 baseWeapon = ExtResource("2_gqpug")
 Speed = 2.0
 maxSpeed = 3.0
-health = 90.0
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity")]
 disable_mode = 2

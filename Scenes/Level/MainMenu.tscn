@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2kfd2a8psu3u"]
+
+[ext_resource type="Script" uid="uid://b3a63veexy0le" path="res://Scripts/GameManagers/MainMenu.cs" id="1_qeley"]
+[ext_resource type="PackedScene" uid="uid://cmff5f7mdbkxo" path="res://Scenes/Level/TestScene.tscn" id="2_ckq2h"]
+[ext_resource type="PackedScene" uid="uid://bx5ut6ri02wrc" path="res://Scenes/Level/MultiplayerTestScene.tscn" id="3_jd58w"]
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_qeley")
+shootingRangeScene = ExtResource("2_ckq2h")
+multiplayerScene = ExtResource("3_jd58w")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 644.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -222.0
+offset_right = 301.0
+offset_bottom = -89.805
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "1V1 SIMULATOR"
+horizontal_alignment = 1
+visible_ratio = -0.0769231
+
+[node name="Shooting Range" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "SHOOTING RANGE"
+icon_alignment = 1
+
+[node name="Multiplayer" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "MULTIPLAYER
+"
+icon_alignment = 1
+
+[node name="Exit" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "EXIT"
+icon_alignment = 1
+
+[connection signal="pressed" from="Menu/VBoxContainer/Shooting Range" to="." method="LoadShootingRange"]
+[connection signal="pressed" from="Menu/VBoxContainer/Multiplayer" to="." method="LoadMultiplayer"]
+[connection signal="pressed" from="Menu/VBoxContainer/Exit" to="." method="Exit"]

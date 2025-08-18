@@ -11,20 +11,20 @@ public partial class Player : MovableEntity
     [Signal]
     public delegate void ReloadEventHandler();
     [Export]
-    private Movement movement;
+    protected Movement movement;
     [Export]
-    private Camera3D Camera;
+    protected Camera3D Camera;
     [Export]
-    private WeaponHolder WeaponsEquipped;
+    protected WeaponHolder WeaponsEquipped;
     [Export]
-    private Label healthUI;
+    protected Label healthUI;
     [Export]
-    private PackedScene baseWeapon;
+    protected PackedScene baseWeapon;
 
     public override void _Ready()
     {
         base._Ready();
-        SetMultiplayerAuthority(1);
+        
         WeaponsEquipped.AddWeapon(baseWeapon);
         UpdateUI();
     }
@@ -60,15 +60,10 @@ public partial class Player : MovableEntity
     }
 
 
-    public override void _Process(double delta)
-    {
-
-    }
-
     public override void _PhysicsProcess(double delta)
     {
-        if (!IsMultiplayerAuthority())
-            return;
+        //if (!IsMultiplayerAuthority())
+           // return;
         base._PhysicsProcess(delta);
         movement.Update(delta);
     }

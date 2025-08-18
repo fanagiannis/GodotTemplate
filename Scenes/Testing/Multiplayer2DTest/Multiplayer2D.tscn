@@ -13,18 +13,18 @@ albedo_color = Color(1, 0.258824, 0.054902, 1)
 [node name="Multiplayer2d" type="Node3D"]
 script = ExtResource("1_wo13h")
 
-[node name="MultiplayerTesting" parent="." instance=ExtResource("1_skwc4")]
-position = Vector2(0, 1)
+[node name="MultiplayerTesting" parent="." node_paths=PackedStringArray("networkHandler") instance=ExtResource("1_skwc4")]
+offset_top = 1.0
+offset_bottom = 648.0
+networkHandler = NodePath("..")
 
-[node name="UI" parent="MultiplayerTesting" index="0" node_paths=PackedStringArray("networkHandler")]
-networkHandler = NodePath("../..")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." node_paths=PackedStringArray("spawnPoints")]
 _spawnable_scenes = PackedStringArray("uid://c4yae1e0qwrfw")
 spawn_path = NodePath("..")
 spawn_limit = 2
 script = ExtResource("2_niscq")
 networkPlayer = ExtResource("3_wo13h")
+spawnPoints = []
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(7.68541, 0, 0, 0, 1, 0, 0, 0, 8.02649, 0, -3.31358, 0)
