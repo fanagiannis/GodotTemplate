@@ -20,13 +20,13 @@ properties/1/replication_mode = 1
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "Camera", "WeaponsEquipped", "healthUI")]
 script = ExtResource("1_pwxi2")
+baseWeapon = ExtResource("2_gqpug")
+Speed = 2.0
+maxSpeed = 3.0
 movement = NodePath("CharacterBody3D")
 Camera = NodePath("CharacterBody3D/FollowCamera")
 WeaponsEquipped = NodePath("CharacterBody3D/FollowCamera/WeaponHolder")
 healthUI = NodePath("CharacterBody3D/FollowCamera/Health")
-baseWeapon = ExtResource("2_gqpug")
-Speed = 2.0
-maxSpeed = 3.0
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity")]
 disable_mode = 2
@@ -38,8 +38,8 @@ floor_max_angle = 0.872665
 platform_floor_layers = 4294967042
 platform_wall_layers = 7
 script = ExtResource("3_nm5wj")
-entity = NodePath("..")
 gravityScale = 150.0
+entity = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -98,8 +98,3 @@ text = "0/0"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_pwxi2")
-
-[connection signal="ChangeEquipment" from="." to="." method="EquipmentChange"]
-[connection signal="Reload" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]
-[connection signal="UseEquipment" from="." to="." method="Use"]
-[connection signal="UseEquipment" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]

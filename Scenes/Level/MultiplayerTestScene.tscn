@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx5ut6ri02wrc"]
+[gd_scene load_steps=7 format=3 uid="uid://bx5ut6ri02wrc"]
 
 [ext_resource type="Script" uid="uid://cusrtmc03i1fx" path="res://Scripts/Network/MultiplayerMain.gd" id="1_v5k1j"]
 [ext_resource type="PackedScene" uid="uid://c4yae1e0qwrfw" path="res://Scenes/Entities/Player/NetworkPlayer.tscn" id="4_g7fa1"]
@@ -11,18 +11,6 @@
 albedo_color = Color(0, 0.211765, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_800fl"]
-
-[sub_resource type="CSharpScript" id="CSharpScript_niscq"]
-script/source = "using Godot;
-using Godot.Collections;
-using System;
-
-public partial class PlayerSpawner : MultiplayerSpawner
-{
-    
-
-}
-"
 
 [node name="MultiplayerLevel" type="Node3D"]
 script = ExtResource("1_v5k1j")
@@ -57,9 +45,6 @@ shape = SubResource("BoxShape3D_800fl")
 _spawnable_scenes = PackedStringArray("uid://c4yae1e0qwrfw")
 spawn_path = NodePath("..")
 spawn_limit = 2
-script = SubResource("CSharpScript_niscq")
-networkPlayer = ExtResource("4_g7fa1")
-scenes/0 = "uid://c4yae1e0qwrfw"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

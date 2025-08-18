@@ -12,14 +12,14 @@
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "Camera", "WeaponsEquipped", "healthUI")]
 script = ExtResource("1_7kpwk")
-movement = NodePath("CharacterBody3D")
-Camera = NodePath("CharacterBody3D/FollowCamera")
-WeaponsEquipped = NodePath("CharacterBody3D/FollowCamera/WeaponHolder")
-healthUI = NodePath("CharacterBody3D/FollowCamera/Health")
 baseWeapon = ExtResource("2_tm67w")
 Speed = 2.0
 maxSpeed = 3.0
 health = 90.0
+movement = NodePath("CharacterBody3D")
+Camera = NodePath("CharacterBody3D/FollowCamera")
+WeaponsEquipped = NodePath("CharacterBody3D/FollowCamera/WeaponHolder")
+healthUI = NodePath("CharacterBody3D/FollowCamera/Health")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity")]
 disable_mode = 2
@@ -31,8 +31,8 @@ floor_max_angle = 0.872665
 platform_floor_layers = 4294967042
 platform_wall_layers = 7
 script = ExtResource("2_qer5h")
-entity = NodePath("..")
 gravityScale = 150.0
+entity = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -88,8 +88,3 @@ vertical_alignment = 2
 offset_right = 40.0
 offset_bottom = 23.0
 text = "0/0"
-
-[connection signal="ChangeEquipment" from="." to="." method="EquipmentChange"]
-[connection signal="Reload" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]
-[connection signal="UseEquipment" from="." to="." method="Use"]
-[connection signal="UseEquipment" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]
