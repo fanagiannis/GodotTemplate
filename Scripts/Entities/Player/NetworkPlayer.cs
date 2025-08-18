@@ -6,10 +6,17 @@ public partial class NetworkPlayer : Player
 	[Export]
 	private int id { get; set; }
 
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		SetMultiplayerAuthority(int.Parse(Name));
+    }
+
+
 	public override void _Ready()
 	{
 		base._Ready();
-		SetMultiplayerAuthority(id);
+		Camera.Current = IsMultiplayerAuthority();
     }
 
     public override void _Input(InputEvent @event)

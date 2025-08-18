@@ -31,7 +31,8 @@ alignment = 1
 layout_mode = 2
 text = "1V1 SIMULATOR"
 horizontal_alignment = 1
-visible_ratio = -0.0769231
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="Shooting Range" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
