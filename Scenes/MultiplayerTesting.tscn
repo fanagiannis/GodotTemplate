@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxiwi1hnpqtk"]
+
+[ext_resource type="Script" uid="uid://b8brk0k2he2n6" path="res://Scripts/Network/NetworkUi.cs" id="1_2v3mj"]
+
+[node name="MultiplayerTesting" type="Node2D"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+script = ExtResource("1_2v3mj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 41.0
+offset_right = 118.0
+offset_bottom = 110.0
+
+[node name="Server" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "SERVER"
+
+[node name="Client" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "CLIENT"
+
+[connection signal="pressed" from="UI/VBoxContainer/Server" to="UI" method="OnServerPressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Client" to="UI" method="OnClientPressed"]

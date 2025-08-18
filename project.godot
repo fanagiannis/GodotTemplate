@@ -17,6 +17,10 @@ run/max_fps=60
 boot_splash/show_image=false
 config/icon="res://Assets/UI/Images/icon.svg"
 
+[autoload]
+
+NetworkHandler="*res://Scripts/Network/NetworkHandler.cs"
+
 [display]
 
 window/size/initial_position_type=4
