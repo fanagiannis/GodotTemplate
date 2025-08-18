@@ -24,6 +24,7 @@ public partial class Player : MovableEntity
     public override void _Ready()
     {
         base._Ready();
+        SetMultiplayerAuthority(1);
         WeaponsEquipped.AddWeapon(baseWeapon);
         UpdateUI();
     }
@@ -66,6 +67,8 @@ public partial class Player : MovableEntity
 
     public override void _PhysicsProcess(double delta)
     {
+        if (!IsMultiplayerAuthority())
+            return;
         base._PhysicsProcess(delta);
         movement.Update(delta);
     }

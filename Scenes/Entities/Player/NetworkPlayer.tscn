@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4yae1e0qwrfw"]
+
+[ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_pwxi2"]
+[ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/BaseWeapon.tscn" id="2_gqpug"]
+[ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Entities/Movement.cs" id="3_nm5wj"]
+[ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/Entities/Player/CameraController.cs" id="4_v25p8"]
+[ext_resource type="Script" uid="uid://croq57jmjsjsf" path="res://Scripts/Entities/Player/WeaponHolder.cs" id="5_uu47q"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pmdnf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pmdnf"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pwxi2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:visible")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("movement", "Camera", "WeaponsEquipped", "healthUI")]
+script = ExtResource("1_pwxi2")
+movement = NodePath("CharacterBody3D")
+Camera = NodePath("CharacterBody3D/FollowCamera")
+WeaponsEquipped = NodePath("CharacterBody3D/FollowCamera/WeaponHolder")
+healthUI = NodePath("CharacterBody3D/FollowCamera/Health")
+baseWeapon = ExtResource("2_gqpug")
+Speed = 2.0
+maxSpeed = 3.0
+health = 90.0
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("entity")]
+disable_mode = 2
+slide_on_ceiling = false
+wall_min_slide_angle = 0.523599
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_max_angle = 0.872665
+platform_floor_layers = 4294967042
+platform_wall_layers = 7
+script = ExtResource("3_nm5wj")
+entity = NodePath("..")
+gravityScale = 150.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("CylinderShape3D_pmdnf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.436727, 0, 0, 0, 0.436727, 0, 0, 0, 0.436727, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_pmdnf")
+
+[node name="FollowCamera" type="Camera3D" parent="CharacterBody3D" node_paths=PackedStringArray("character", "cameraPivot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021, 0.302, -0.0835244)
+script = ExtResource("4_v25p8")
+character = NodePath("..")
+cameraPivot = NodePath(".")
+
+[node name="Crosshair" type="Label" parent="CharacterBody3D/FollowCamera"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+horizontal_alignment = 1
+
+[node name="WeaponHolder" type="Node3D" parent="CharacterBody3D/FollowCamera" node_paths=PackedStringArray("weaponStats")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.155, -0.05, -0.148)
+script = ExtResource("5_uu47q")
+weaponStats = NodePath("../WeaponStats")
+
+[node name="WeaponStats" type="Label" parent="CharacterBody3D/FollowCamera"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "weapon"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Health" type="Label" parent="CharacterBody3D/FollowCamera"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0/0"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_pwxi2")
+
+[connection signal="ChangeEquipment" from="." to="." method="EquipmentChange"]
+[connection signal="Reload" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]
+[connection signal="UseEquipment" from="." to="." method="Use"]
+[connection signal="UseEquipment" from="." to="CharacterBody3D/FollowCamera/WeaponHolder" method="SetWeaponDisplay"]

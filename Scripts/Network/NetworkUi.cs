@@ -3,13 +3,15 @@ using System;
 
 public partial class NetworkUi : Control
 {
+	[Export]
+	NetworkHandler networkHandler;
 	public void OnServerPressed()
 	{
-		//NetworkHandler.StartServer();
+		networkHandler.StartServer();
 	}
 
 	public void OnClientPressed()
 	{
-
+		networkHandler.StartClient();
 	}
 }
