@@ -34,6 +34,7 @@ public partial class Entity : Node3D
 
 	public void TakeDamage(float value)
 	{
+		//HP.TakeDamage(value);
 		EmitSignal(SignalName.DamageTaken, value);
 	}
 

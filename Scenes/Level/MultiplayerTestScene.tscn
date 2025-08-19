@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx5ut6ri02wrc"]
+[gd_scene load_steps=10 format=3 uid="uid://bx5ut6ri02wrc"]
 
 [ext_resource type="Script" uid="uid://cusrtmc03i1fx" path="res://Scripts/Network/MultiplayerMain.gd" id="1_v5k1j"]
+[ext_resource type="PackedScene" uid="uid://c0277iydc025m" path="res://Scenes/Pickups/PickupTemplate.tscn" id="3_g7fa1"]
 [ext_resource type="PackedScene" uid="uid://c4yae1e0qwrfw" path="res://Scenes/Entities/Player/NetworkPlayer.tscn" id="4_g7fa1"]
+[ext_resource type="PackedScene" uid="uid://du6nmg7k4eewi" path="res://Scenes/Items/Pistol.tscn" id="4_pd356"]
+[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/SMG.tscn" id="5_pd356"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_800fl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_800fl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_800fl"]
-albedo_color = Color(0, 0.211765, 1, 1)
+albedo_color = Color(0, 0.211765, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_800fl"]
 
@@ -31,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06398, 0.67432, 2.77308)
 transform = Transform3D(1, 0, 0, 0, 0.683796, 0.729673, 0, -0.729673, 0.683796, -0.62407, 5.8783, 7.22687)
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(18.0696, 0, 0, 0, 1, 0, 0, 0, 24.4292, 0, -1.3711, -0.45013)
+transform = Transform3D(18.0696, 0, 0, 0, 1, 0, 0, 0, 24.4292, 0, -2.89133, -0.45013)
 physics_material_override = SubResource("PhysicsMaterial_800fl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
@@ -39,6 +42,17 @@ mesh = SubResource("BoxMesh_800fl")
 surface_material_override/0 = SubResource("StandardMaterial3D_800fl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_800fl")
+
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(6.46, -0.37493, 0, 2.61263, 0.927053, 0, 0, 0, 3.77917, 6.80191, -1.58707, -0.953093)
+physics_material_override = SubResource("PhysicsMaterial_800fl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2"]
+mesh = SubResource("BoxMesh_800fl")
+surface_material_override/0 = SubResource("StandardMaterial3D_800fl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
 shape = SubResource("BoxShape3D_800fl")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
@@ -69,6 +83,16 @@ text = "JOIN"
 [node name="Back" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "BACK"
+
+[node name="PickupTemplate" parent="." instance=ExtResource("3_g7fa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59727, -1.87465, -4.55757)
+item = 2
+itemInstance = ExtResource("4_pd356")
+
+[node name="PickupTemplate2" parent="." instance=ExtResource("3_g7fa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59727, -1.87465, 3.1502)
+item = 2
+itemInstance = ExtResource("5_pd356")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Join" to="." method="_on_join_pressed"]

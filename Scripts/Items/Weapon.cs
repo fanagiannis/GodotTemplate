@@ -51,9 +51,11 @@ public partial class Weapon : MeshInstance3D
             var collider = result["collider"].AsGodotObject();
             var position = (Vector3)result["position"];
             Entity entity = collider as Entity;
+            //NetworkPlayer networkPlayer = collider as NetworkPlayer;
+           // GD.Print(entity);
             if (entity != null)
             {
-                entity.TakeDamage(damage);
+                entity.Damage(damage);
             }
         }
         else
