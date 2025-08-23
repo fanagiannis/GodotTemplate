@@ -4,9 +4,9 @@ using System;
 public partial class Item : Node3D
 {
 	[Export]
-	private PackedScene itemInstance;
+	protected PackedScene itemInstance;
 	[Export]
-	private string itemName;
+	protected string itemName;
 
 	public override void _Ready() { }
 	public override void _Process(double delta) { }

@@ -4,7 +4,7 @@ using System;
 public partial class Interactable : Item
 {
     [Signal]
-    public delegate void InteractSetEventHandler();
+    public delegate void InteractionEventHandler();
     [Export]
     protected Label3D interactionPrompt;
     [Export]
@@ -17,18 +17,29 @@ public partial class Interactable : Item
     {
         if (body.GetParent().IsInGroup("Player"))
         {
-            interactionPrompt.Visible = true;
-            SetInteract(true);
+            Player player = body as Player;
+            player.Interact();
+            if (canInteract)
+            {
+                interactionPrompt.Visible = true;
+            }
+        
+            
         }
     }
-    
+
     public void OnBodyExitted(Node3D body)
-	{
+    {
         if (body.GetParent().IsInGroup("Player"))
         {
-            
+
             interactionPrompt.Visible = false;
             SetInteract(false);
-		}
-	}
+        }
+    }
+
+    protected virtual void Interact()
+    {
+        GD.Print(itemName);
+    }
 }

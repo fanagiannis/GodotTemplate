@@ -17,6 +17,8 @@ public partial class Player : MovableEntity
     [Export]
     protected WeaponHolder WeaponsEquipped;
     [Export]
+    protected Interaction playerInteraction;
+    [Export]
     protected Label healthUI;
     [Export]
     protected PackedScene baseWeapon;
@@ -24,7 +26,7 @@ public partial class Player : MovableEntity
     public override void _Ready()
     {
         base._Ready();
-        
+
         WeaponsEquipped.AddWeapon(baseWeapon);
         UpdateUI();
     }
@@ -63,7 +65,7 @@ public partial class Player : MovableEntity
     public override void _PhysicsProcess(double delta)
     {
         //if (!IsMultiplayerAuthority())
-           // return;
+        // return;
         base._PhysicsProcess(delta);
         movement.Update(delta);
     }
@@ -79,6 +81,11 @@ public partial class Player : MovableEntity
     {
         FireWeapon();
         //GD.Print("bang");
+    }
+
+    public void Interact()
+    {
+        playerInteraction.CheckInteraction(Camera, GetWorld3D().DirectSpaceState);
     }
 
     public WeaponHolder GetWeaponHolder()
@@ -98,6 +105,14 @@ public partial class Player : MovableEntity
         healthUI.Text = HP.Value() + " / " + HP.maxValue();
     }
 
+    public Interaction Interaction()
+    {
+        return playerInteraction;
+    }
 
+    public Camera3D GetCamera()
+    {
+        return Camera;
+    }
 
 }
