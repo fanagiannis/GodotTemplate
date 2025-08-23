@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ba5xy1wfp4c31"]
 
-[ext_resource type="Script" uid="uid://0we2qdr3bnmh" path="res://Scenes/Items/Melee.cs" id="1_1j4gx"]
+[ext_resource type="Script" uid="uid://0we2qdr3bnmh" path="res://Scripts/Items/Melee.cs" id="1_6tu44"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_r26yx"]
 
@@ -14,7 +14,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_r26yx")
 skin = SubResource("Skin_1j4gx")
 surface_material_override/0 = SubResource("StandardMaterial3D_r26yx")
-script = ExtResource("1_1j4gx")
+script = ExtResource("1_6tu44")
 weaponName = "Base Melee"
 damage = 1.0
 range = 1.0

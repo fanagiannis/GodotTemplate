@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4yae1e0qwrfw"]
 
 [ext_resource type="Script" uid="uid://dsa45nywo2anr" path="res://Scripts/Entities/Player/NetworkPlayer.cs" id="1_pwxi2"]
-[ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/BaseWeapon.tscn" id="2_gqpug"]
+[ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/Weapons/BaseWeapon.tscn" id="2_gqpug"]
 [ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Entities/Movement.cs" id="3_nm5wj"]
 [ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/Entities/Player/CameraController.cs" id="4_v25p8"]
 [ext_resource type="Script" uid="uid://croq57jmjsjsf" path="res://Scripts/Entities/Player/WeaponHolder.cs" id="5_uu47q"]

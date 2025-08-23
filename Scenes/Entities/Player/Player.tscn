@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0w10dqkwstbq" path="res://Scripts/Entities/Player/Player.cs" id="1_7kpwk"]
 [ext_resource type="Script" uid="uid://cpotefcsj3lvd" path="res://Scripts/Entities/Movement.cs" id="2_qer5h"]
-[ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/BaseWeapon.tscn" id="2_tm67w"]
+[ext_resource type="PackedScene" uid="uid://ba5xy1wfp4c31" path="res://Scenes/Items/Weapons/BaseWeapon.tscn" id="2_tm67w"]
 [ext_resource type="Script" uid="uid://by5el2buwrr57" path="res://Scripts/Entities/Player/CameraController.cs" id="3_pmdnf"]
 [ext_resource type="Script" uid="uid://croq57jmjsjsf" path="res://Scripts/Entities/Player/WeaponHolder.cs" id="5_tm67w"]
 
@@ -67,6 +67,17 @@ horizontal_alignment = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.155, -0.05, -0.148)
 script = ExtResource("5_tm67w")
 weaponStats = NodePath("../WeaponStats")
+
+[node name="Flashlight" type="SpotLight3D" parent="CharacterBody3D/FollowCamera/WeaponHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0894074, 0.0919972, 0.287165)
+visible = false
+light_energy = 0.0
+light_specular = 0.47
+distance_fade_enabled = true
+spot_range = 2.455
+spot_attenuation = 0.74
+spot_angle = 41.1
+spot_angle_attenuation = 0.757858
 
 [node name="WeaponStats" type="Label" parent="CharacterBody3D/FollowCamera"]
 anchors_preset = 3

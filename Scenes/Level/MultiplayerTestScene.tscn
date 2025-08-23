@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cusrtmc03i1fx" path="res://Scripts/Network/MultiplayerMain.gd" id="1_v5k1j"]
 [ext_resource type="PackedScene" uid="uid://c0277iydc025m" path="res://Scenes/Pickups/PickupTemplate.tscn" id="3_g7fa1"]
 [ext_resource type="PackedScene" uid="uid://c4yae1e0qwrfw" path="res://Scenes/Entities/Player/NetworkPlayer.tscn" id="4_g7fa1"]
-[ext_resource type="PackedScene" uid="uid://du6nmg7k4eewi" path="res://Scenes/Items/Pistol.tscn" id="4_pd356"]
-[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/SMG.tscn" id="5_pd356"]
+[ext_resource type="PackedScene" uid="uid://du6nmg7k4eewi" path="res://Scenes/Items/Weapons/Pistol.tscn" id="4_pd356"]
+[ext_resource type="PackedScene" uid="uid://kjlxq7vbh1h0" path="res://Scenes/Items/Weapons/SMG.tscn" id="5_pd356"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_800fl"]
 

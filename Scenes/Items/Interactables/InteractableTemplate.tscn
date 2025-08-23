@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b34tt6abvbyq7"]
+
+[ext_resource type="Script" uid="uid://baqo6mpugw3qv" path="res://Scripts/Items/Interactable.cs" id="1_edlev"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bxquk"]
+radius = 1.33757
+
+[sub_resource type="TorusMesh" id="TorusMesh_bxquk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_edlev"]
+size = Vector3(1.87244, 1, 1.94336)
+
+[node name="Interactable Template" type="Area3D" node_paths=PackedStringArray("interactionPrompt")]
+script = ExtResource("1_edlev")
+interactionPrompt = NodePath("InteractPrompt")
+itemName = "Interactable Template"
+
+[node name="InteractPrompt" type="Label3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.682247, 0)
+visible = false
+text = "Interact
+"
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bxquk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("TorusMesh_bxquk")
+skeleton = NodePath("../..")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0105896, 0, 0.0205078)
+shape = SubResource("BoxShape3D_edlev")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExitted"]

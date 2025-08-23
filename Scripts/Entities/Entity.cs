@@ -51,6 +51,7 @@ public partial class Entity : Node3D
 		isDead = true;
 		SetProcess(false);
 		Visible = false;
+		QueueFree();
 	}
 
 	public void DecStamina(float value)
